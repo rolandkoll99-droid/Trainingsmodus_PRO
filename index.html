@@ -10,21 +10,6 @@
      Vereinslogo/-name: direkt in dieser Datei (eigenständig). -->
 <style>
 /* ===== eingebettet aus theme.css (Datei funktioniert eigenständig) ===== */
-/* ============================================================
-   theme.css - zentrales Design fuer alle Module des Trainingsportals
-   ============================================================
-   Wird von mehreren Modulen gemeinsam eingebunden (u.a.
-   05_Trainingsmodus_Pro.html, 05_Trainingsmodus_Pro_Tablet.html) und
-   liefert: Farbpalette, Schriftarten, Basis-Buttongroessen sowie die
-   gemeinsame Kopfzeile (.topbar / .club-brand).
-
-   Hinweis: Diese Datei wurde nachgebaut, weil im Projektordner kein
-   Original vorlag - Farben/Variablennamen sind 1:1 aus den Modulen
-   uebernommen (die sie bereits per var(--...) referenzieren), Logo/
-   Vereinsname in club.js sind bewusst neutral gehalten und lassen sich
-   dort mit wenigen Zeilen anpassen.
-   ============================================================ */
-
 :root{
     --green:#1f5e3a;
     --red:#b93a32;
@@ -46,13 +31,10 @@
     --w-color:#4caf50;
     --e-color:#ff6b6b;
 
-    /* Buttongroesse je Modul einstellbar (1 = Basisgroesse). Auf dem
-       Zuschauermonitor (Pro) bewusst etwas groesser fuer bessere Lesbarkeit
-       auf Distanz; bei Bedarf hier zentral je Modul anpassen. */
     --btn-scale-pro: 1.05;
 }
 
-/* ===== GEMEINSAME KOPFZEILE (Start-Link, Spiel-Historie, Vollbild, Vereinslogo) ===== */
+/* ===== GEMEINSAME KOPFZEILE ===== */
 .topbar{
     position: sticky;
     top: 0;
@@ -90,14 +72,6 @@
 }
 .topbar a:hover, .topbar button.linkish:hover{ color:var(--text-main); border-color:var(--text-dim); background:none; }
 
-.topbar .logout{
-    border:1px solid var(--line);
-    padding:6px 12px;
-    border-radius:20px;
-}
-.topbar .logout:hover{ border-color:var(--text-dim); }
-
-/* Vereinslogo/-name (Inhalt wird von club.js eingetragen) */
 .club-brand{
     display:flex;
     align-items:center;
@@ -120,16 +94,13 @@
     color:var(--text-main);
     white-space:nowrap;
 }
-
 </style>
 <link rel="icon" href="data:image/png;base64,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">
 <meta name="theme-color" content="#131b24">
-<!-- Für den Excel-Export der Spiel-Historie (siehe exportHistory()). Lädt im Hintergrund;
-     falls am Raspberry gerade kein Internet verfügbar ist, greift automatisch der CSV-Fallback. -->
+
 <script defer src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -152,9 +123,7 @@ body{
     overflow: hidden;
 }
 
-/* .topbar / .club-brand: siehe theme.css (zentral für alle 3 Module) */
-
-/* ===== MANNSCHAFTSNAMEN (frei editierbar, jetzt im Einstellungen-Panel) ===== */
+/* ===== MANNSCHAFTSNAMEN ===== */
 .team-name-row{
     display:flex;
     gap:16px;
@@ -184,10 +153,6 @@ body{
     outline:2px solid var(--accent);
 }
 
-/* Mannschaftsfarbe (RAL 6038 Leuchtgrün / RAL 3024 Leuchtrot) je Mannschaft
-   wählbar - wie im Modul Tablet. Die beiden Teams tauschen sich die Farbe
-   automatisch: sobald eine Mannschaft "leuchtrot" wählt, bekommt die andere
-   automatisch "leuchtgrün" (nur 2 offizielle Stockfarben für 2 Teams). */
 .team-name-group{
     display:flex;
     align-items:center;
@@ -275,7 +240,6 @@ select, input{
     font-size:0.95rem;
 }
 
-/* Buttongröße: siehe --btn-scale-pro in theme.css */
 button{
     cursor:pointer;
     background:var(--accent);
@@ -332,7 +296,6 @@ button:active {
     min-height: 0;
 }
 
-/* ===== ARENA (Hauptbildschirm = Zuschauermonitor-Layout) ===== */
 .arena{
     width:100%;
     max-width:1900px;
@@ -367,6 +330,19 @@ button:active {
     letter-spacing:1px;
 }
 
+.bahn-badge{
+    font-family:var(--font-display);
+    font-size:1.4rem;
+    font-weight:900;
+    letter-spacing:1px;
+    color:#102417;
+    background:var(--gold);
+    padding:4px 18px;
+    border-radius:20px;
+    white-space:nowrap;
+    cursor:pointer;
+}
+
 .arena-hint{
     font-size:0.8rem;
     color:#8aa89a;
@@ -387,7 +363,6 @@ button:active {
 }
 .pending-preview.show{ display:inline-block; animation: blink 0.8s ease-in-out infinite; }
 
-/* ===== TEAMS ROW ===== */
 .teams-row{
     display:grid;
     grid-template-columns: 1fr 1fr;
@@ -444,7 +419,6 @@ button:active {
 }
 .team-label .key-hint{ font-size:0.78rem; color:#8aa89a; font-weight:600; display:block; }
 
-/* ===== GEWONNENE SPIELE (groß, über der Kehren-Eingabe) ===== */
 .wins-panel{
     display:flex;
     align-items:center;
@@ -485,7 +459,6 @@ button:active {
     color:#4a5a52;
 }
 
-/* Ergebnis-Anzeige: bewusst sehr groß für Lesbarkeit auf Distanz (Zuschauermonitor, ~20m) */
 .team-score-big {
     font-size: clamp(8rem, 24vh, 18rem);
     font-weight: 900;
@@ -497,7 +470,6 @@ button:active {
 }
 .team-block.e .team-score-big { color: var(--e-color); text-shadow: 0 4px 20px rgba(255,107,107,0.3); }
 
-/* ===== EINGABE-HINWEIS (externes Tastenfeld, kein Bildschirm-Ziffernblock) ===== */
 .input-hint-panel{
     background:#0a1810;
     border-radius:20px;
@@ -530,8 +502,6 @@ button:active {
     color:#eef2f6;
 }
 
-/* ===== KEHREN-VERLAUF (unterer Bereich – jetzt der einzige untere Block,
-   da die Spiel-Historie in ein eigenes Fenster über den Button oben gewandert ist) ===== */
 .kehren-verlauf-panel{
     background:#0a1810;
     border-radius:18px;
@@ -556,9 +526,6 @@ button:active {
     align-items:center;
 }
 
-/* Kehren-Verlauf füllt den gesamten verfügbaren Platz: Spaltenanzahl wird per
-   --cols gesetzt (bis 8 Kehren eine Reihe, bei Verlängerung auf 2+ Reihen verteilt),
-   die Reihen teilen sich die volle Höhe. */
 .kehren-verlauf-grid{
     --cols: 6;
     flex:1 1 0;
@@ -586,11 +553,9 @@ button:active {
     overflow:hidden;
 }
 .verlauf-item:hover{ border-color:rgba(255,255,255,0.2); }
-/* Gespielte Kehren: roter Rand */
 .verlauf-item.is-completed{
     border-color:#e53935;
 }
-/* Aktuelle Kehre: grün, deutlich stärkerer Rahmen (hat Vorrang vor "gespielt") */
 .verlauf-item.is-active{
     border:7px solid #2ee66b;
     box-shadow:0 0 0 3px rgba(46,230,107,0.25), 0 0 26px rgba(46,230,107,0.45);
@@ -604,7 +569,6 @@ button:active {
 
 .verlauf-item .v-number{ font-weight:700; color:#8aa89a; font-size:clamp(0.95rem, 1.6vw, 1.4rem); }
 .verlauf-item.is-active .v-number{ color:#2ee66b; }
-/* Kehrenergebnis: deutlich größer für bessere Lesbarkeit auf Distanz */
 .verlauf-item .v-points{
     font-weight:900;
     display:flex;
@@ -616,7 +580,6 @@ button:active {
 .verlauf-item .v-points .w{ color:var(--w-color); }
 .verlauf-item .v-points .e{ color:var(--e-color); }
 
-/* ===== KEHREN-VERLAUF MIT VERLÄNGERUNG: Grundspiel oben, Verlängerungs-Blöcke unten ===== */
 .verlauf-split{ flex:1 1 0; min-height:0; display:flex; flex-direction:column; gap:10px; }
 .vs-section{ display:flex; flex-direction:column; min-height:0; gap:6px; }
 .vs-base{ flex:0.8 1 0; }
@@ -653,15 +616,16 @@ button:active {
 .vb-live{ color:#2ee66b; }
 .vb-tiles{ flex:1 1 0; min-height:0; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
 .vb-tiles .verlauf-item .v-points{ font-size:clamp(1.8rem, 3.2vw, 3.4rem); }
-/* Kehren-Nummer als kleines Eck-Label, damit sie bei niedrigen Kacheln nicht abgeschnitten wird */
 .verlauf-split .verlauf-item{ position:relative; padding:6px 6px 4px; }
 .verlauf-split .verlauf-item .v-number{
     position:absolute; top:4px; left:10px; line-height:1;
     font-size:clamp(0.8rem, 1.1vw, 1.05rem);
 }
 .verlauf-split .verlauf-item .v-points{ margin-top:0; line-height:1; }
-/* Kleinere Bildschirme: bei Verlängerung Mannschaften nebeneinander lassen,
-   damit genug Platz für den Kehren-Verlauf bleibt */
+.arena.has-ext .team-score-big{ font-size:clamp(4rem, 15vh, 12rem); }
+.arena.has-ext .kehren-verlauf-panel{ min-height:30vh; }
+.arena.has-ext .wins-panel{ padding-top:4px; padding-bottom:4px; }
+.arena.has-ext .wins-item .wins-count{ font-size:clamp(2rem, 6vh, 3.6rem); }
 @media (max-width: 1300px){
     .arena.has-ext .teams-row{ grid-template-columns:1fr 1fr; }
     .arena.has-ext .team-score-big{ font-size:clamp(2rem, 7vh, 4rem); }
@@ -673,7 +637,6 @@ button:active {
     .verlauf-split .kehren-verlauf-grid{ grid-template-columns:repeat(auto-fill, minmax(64px, 1fr)); grid-auto-rows:auto; }
 }
 
-/* ===== SPIEL-HISTORIE (eigenes Fenster, über Button "🏅 Historie" oben erreichbar) ===== */
 .history-overlay{
     position: fixed; inset:0;
     background: rgba(0,0,0,0.6);
@@ -758,11 +721,9 @@ button:active {
     white-space:nowrap;
     overflow:hidden;
     text-overflow:ellipsis;
-    flex-shrink:0; /* verhindert, dass Zeilen bei vielen Spielen zusammengequetscht werden -
-                       stattdessen scrollt .history-list sauber (siehe overflow-y:auto dort) */
+    flex-shrink:0;
 }
 .history-chip.e-win{ border-left-color:var(--e-color); }
-/* Aufklappbarer Kehrverlauf in der Spiel-Historie */
 details.history-chip{ white-space:normal; overflow:visible; }
 details.history-chip summary{
     list-style:none; cursor:pointer; display:flex; align-items:center; flex-wrap:wrap; gap:4px;
@@ -771,6 +732,13 @@ details.history-chip summary::-webkit-details-marker{ display:none; }
 details.history-chip .g-caret{ display:inline-block; font-size:0.7rem; color:#8aa89a; margin-right:6px; transition:transform .15s; }
 details.history-chip[open] .g-caret{ transform:rotate(90deg); }
 details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; font-size:0.75rem; }
+
+/* Schmale Bildschirme: Datum bricht in eigene Zeile */
+@media (max-width: 700px) {
+    details.history-chip summary { flex-direction: column; align-items: flex-start; }
+    details.history-chip .g-date { margin-left: 0; }
+}
+
 .history-kehren{ margin-top:10px; overflow-x:auto; }
 .history-kehren table{ border-collapse:collapse; font-size:0.9rem; min-width:100%; }
 .history-kehren th, .history-kehren td{
@@ -794,7 +762,6 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
     padding:6px 2px;
 }
 
-/* ===== FOOTER-ROW (im arena) ===== */
 .arena-footer{
     display:flex;
     justify-content:center;
@@ -813,7 +780,6 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
     margin-left:auto;
 }
 
-/* ===== TRAINING BEENDET / MODALS (unverändert-ähnlich) ===== */
 .training-ended-overlay {
     position: fixed; inset:0;
     background: rgba(0,0,0,0.7);
@@ -855,7 +821,6 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
 .toast.winner{ background: #4caf50; font-weight:700; font-size:1.2rem; }
 .toast.warn{ background: #b93a32; font-weight:700; }
 
-/* ===== KEHRE LÖSCHEN – Rückfrage, welche Kehre (Ziffernblock "/") ===== */
 .kehre-delete-overlay {
     position: fixed; inset:0;
     background: rgba(0,0,0,0.7);
@@ -912,7 +877,6 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
 }
 .kehre-delete-btn .kd-score{ font-weight:900; font-size:1.05rem; color:var(--red); }
 
-/* ===== SCHLUSS-BESTÄTIGUNG (alle Kehren gespielt) ===== */
 .final-confirm-overlay{
     position:fixed; inset:0; background:rgba(0,0,0,0.75);
     display:none; justify-content:center; align-items:center;
@@ -938,7 +902,6 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
 .gold{ background:var(--gold); color:black; }
 .gold:active{ background:#f0c860; }
 
-/* ===== UNENTSCHIEDEN – KEHRE ERWEITERN (NEU) ===== */
 .tie-break-overlay {
     position: fixed; inset:0;
     background: rgba(0,0,0,0.7);
@@ -971,7 +934,6 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
     border-radius:14px; border:none; cursor:pointer; font-weight:700;
 }
 
-/* ===== KEHRE BESTÄTIGEN – Rückfrage nach jeder Kehreneingabe ===== */
 .kehre-confirm-overlay {
     position: fixed; inset:0;
     background: rgba(0,0,0,0.7);
@@ -1012,9 +974,6 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
 .kehre-confirm-yes{ background:var(--green); color:white; }
 .kehre-confirm-no{ background:var(--red); color:white; }
 
-/* ===== EINSTELLUNGEN (Zahnrad) – Mannschaftsnamen, Farben, Siege/Kehren/Spieler
-   (genauso wie im Modul Tablet: alles, was vorher fest sichtbar in der Kopfzeile
-   stand, ist jetzt über das Zahnrad in einem eigenen Fenster erreichbar) ===== */
 .settings-btn{
     font-size:1.3rem !important;
     line-height:1;
@@ -1120,7 +1079,6 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
     font-weight:800;
 }
 
-/* ===== RESPONSIVE ===== */
 @media (max-width: 1300px){
     .teams-row{ grid-template-columns: 1fr; }
     .team-score-big{ font-size:3.2rem; }
@@ -1157,22 +1115,18 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
 </div>
 
 <div class="header">
-    <h1>ESV Grein</h1>
+    <h1>ESV GREIN</h1>
 
     <div class="header-controls">
         <span class="keyboard-status" id="keyboardStatus">🔑 Bereit</span>
-
         <button class="settings-btn" onclick="openSettings()" title="Einstellungen">⚙️</button>
-
         <button onclick="fullReset()" style="background:#b93a32;" title="Kompletter Reset">↺</button>
     </div>
 </div>
 
 <div class="layout" id="layout"></div>
 
-<!-- Einstellungen: Mannschaftsnamen, Farbzuweisung, Auswahl Siege/Kehren/Spieler -
-     alles, was vorher fest sichtbar in der Kopfzeile stand, ist jetzt hier über
-     das Zahnrad erreichbar (genauso wie im Modul Tablet). -->
+<!-- Einstellungen -->
 <div class="settings-overlay" id="settingsOverlay">
     <div class="settings-box">
         <button class="settings-close-btn" onclick="closeSettings()" title="Schließen">✕</button>
@@ -1195,6 +1149,24 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
                         <button type="button" class="color-btn red" onclick="setTeamColor('e','red')"><span class="dot"></span>Leuchtrot</button>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <div class="settings-section">
+            <h4>Bahn</h4>
+            <div class="settings-selects">
+                <label>Auswahl Bahn
+                    <select id="bahnSelect">
+                        <option value="1" selected>Bahn 1</option>
+                        <option value="2">Bahn 2</option>
+                        <option value="3">Bahn 3</option>
+                        <option value="4">Bahn 4</option>
+                        <option value="5">Bahn 5</option>
+                        <option value="6">Bahn 6</option>
+                        <option value="7">Bahn 7</option>
+                        <option value="8">Bahn 8</option>
+                    </select>
+                </label>
             </div>
         </div>
 
@@ -1245,16 +1217,13 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
     </div>
 </div>
 
-<!-- Unentschieden – automatische Kehren-Verlängerung (NEU): es gibt kein Unentschieden zum Werten,
-     es werden automatisch immer 2 weitere Kehren gespielt, bis ein Sieger feststeht
-     (wie im echten Eisstocksport). Kein Klick nötig - die Verlängerung startet sofort,
-     dieses Fenster ist nur eine Info und schließt sich von selbst. -->
+<!-- Unentschieden -->
 <div class="tie-break-overlay" id="tieBreakOverlay">
     <div class="tie-break-box">
         <div class="tie-break-icon">🤝</div>
         <h2>Unentschieden!</h2>
         <div class="tie-break-score" id="tieBreakScore">0 : 0</div>
-        <p class="tie-break-hint" id="tieBreakHint">Nach allen Kehren steht es unentschieden. Es werden automatisch 2 weitere Kehren gespielt.</p>
+        <p class="tie-break-hint" id="tieBreakHint"></p>
         <div class="tie-break-buttons">
             <button onclick="closeTieBreakDialog()">Verstanden</button>
         </div>
@@ -1263,7 +1232,7 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
 
 <div class="toast" id="toast"></div>
 
-<!-- Spiel-Historie – eigenes Fenster, über den Button "🏅 Spiel-Historie" oben erreichbar -->
+<!-- Spiel-Historie -->
 <div class="history-overlay" id="historyOverlay" onclick="if(event.target===this){closeHistory();}">
     <div class="history-panel">
         <h4>
@@ -1278,9 +1247,7 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
     </div>
 </div>
 
-<!-- Kehre löschen – Rückfrage, welche Kehre genau gelöscht werden soll (Ziffernblock "/").
-     Die Auswahl der zu löschenden Kehre erfolgt ebenfalls über den Ziffernblock: Nummer
-     eintippen und mit Enter bestätigen (oder direkt eine Kachel antippen). -->
+<!-- Kehre löschen -->
 <div class="kehre-delete-overlay" id="kehreDeleteOverlay">
     <div class="kehre-delete-box">
         <h2 id="kehreDeleteTitle">🗑️ Welche Kehre löschen?</h2>
@@ -1291,13 +1258,7 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
     </div>
 </div>
 
-<!-- Kehre bestätigen – Rückmeldung mehrerer Vereine nach den ersten Testspielen:
-     nach JEDER Kehreneingabe kurz nachfragen, ob der Wert stimmt, bevor die nächste
-     Kehre / die Wertung darauf aufbaut. JA = weiter, NEIN = Eingabe verwerfen und
-     dieselbe Kehre neu eingeben. -->
-<!-- Schluss-Bestätigung: sobald ALLE Kehren gespielt sind, wird der komplette
-     Kehrverlauf noch einmal angezeigt. Enter = Ja (Spiel werten), * = Nein
-     (danach wird gefragt, welche Kehre korrigiert werden soll). -->
+<!-- Schluss-Bestätigung -->
 <div class="final-confirm-overlay" id="finalConfirmOverlay">
     <div class="final-confirm-box">
         <div class="kehre-confirm-icon">📋</div>
@@ -1311,6 +1272,7 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
     </div>
 </div>
 
+<!-- Kehre bestätigen -->
 <div class="kehre-confirm-overlay" id="kehreConfirmOverlay">
     <div class="kehre-confirm-box">
         <div class="kehre-confirm-icon">❓</div>
@@ -1324,12 +1286,17 @@ details.history-chip .g-date{ margin-left:auto; color:#65796d; font-weight:500; 
     </div>
 </div>
 
-<!-- Trainingsmodus PRO nutzt dieselbe zentrale Authentifizierung und Datenablage wie das Portal. -->
 <script>
-// ===== EIGENSTÄNDIGER SPEICHER =====
-// Diese Datei funktioniert ohne Dashboard/Server: alle Daten (Spiel-Historie,
-// Mannschaftsnamen, Farben) werden lokal im Browser dieses Geräts gespeichert.
-// Doppelklick auf die Datei genügt - keine weiteren Dateien nötig.
+/* ============================================================
+   Trainingsmodus PRO V04 – EIGENSTÄNDIGE Datei
+   ------------------------------------------------------------
+   Diese Datei läuft OHNE Dashboard, OHNE auth.js und OHNE Server.
+   Alle Daten (Spiel-Historie, Mannschaftsnamen, Farben) werden
+   lokal im Browser (localStorage) gespeichert.
+   Start: Doppelklick auf die Datei genügt.
+   ============================================================ */
+
+// ===== SPEICHER-HELPER =====
 const Store = {
     get(key, fallback) {
         try { const x = localStorage.getItem(key); return x == null ? fallback : JSON.parse(x); }
@@ -1340,15 +1307,14 @@ const Store = {
     },
     remove(key) { try { localStorage.removeItem(key); } catch (e) {} }
 };
+
 // ============================================================
-// EINSTELLUNGEN & PERSISTENZ
+// KONSTANTEN & STORAGE-KEYS
 // ============================================================
 const HISTORY_STORAGE_KEY = 'trainingsmodus_pro_historie';
 const PENDING_DIGIT_TIMEOUT = 650;
+const HISTORY_LIMIT = 500;   // NEU: verhindert volllaufenden localStorage
 
-// ============================================================
-// EXPORT-VERLAUF (gemeinsame Anzeige im Dashboard: "Zuletzt exportiert")
-// ============================================================
 const EXPORT_LOG_KEY = 'esv_grein_export_log';
 function logExport(modul, dateiname, typ) {
     try {
@@ -1368,6 +1334,10 @@ function loadHistory() {
 }
 
 function saveHistory() {
+    // NEU: Hard-Limit – älteste Einträge werden entfernt
+    if (state.history.length > HISTORY_LIMIT) {
+        state.history = state.history.slice(-HISTORY_LIMIT);
+    }
     Store.set(HISTORY_STORAGE_KEY, state.history);
 }
 
@@ -1376,9 +1346,7 @@ function escapeHtml(str) {
 }
 
 // ============================================================
-// MANNSCHAFTSNAMEN (frei editierbar über die Textfelder oben) - gleicher
-// localStorage-Key wie in 05_Trainingsmodus_Pro_Tablet.html, damit ein einmal
-// vergebener Name auf beiden Varianten übernommen wird.
+// MANNSCHAFTSNAMEN
 // ============================================================
 const TEAM_NAMES_STORAGE_KEY = 'esv_grein_team_namen';
 const DEFAULT_TEAM_NAMES = { w: 'Mannschaft W', e: 'Mannschaft E' };
@@ -1387,7 +1355,8 @@ function loadTeamNames() {
     try {
         const data = Store.get(TEAM_NAMES_STORAGE_KEY, null);
         if (data) {
-            const parsed = JSON.parse(data);
+            // Store.get liefert bereits ein Objekt; alte Einträge können noch als JSON-String vorliegen
+            const parsed = typeof data === 'string' ? JSON.parse(data) : data;
             if (parsed && typeof parsed.w === 'string' && typeof parsed.e === 'string') {
                 return {
                     w: parsed.w.trim() || DEFAULT_TEAM_NAMES.w,
@@ -1409,8 +1378,6 @@ function updateTeamName(team, value) {
     render();
 }
 
-// Namensfelder mit dem aktuellen Stand füllen - außer, jemand tippt gerade darin
-// (sonst würde der Cursor bei jedem Tastendruck verspringen).
 function syncTeamNameInputs() {
     const wInput = document.getElementById('teamNameInputW');
     const eInput = document.getElementById('teamNameInputE');
@@ -1426,22 +1393,12 @@ function refreshTeamNamesIfChanged() {
     render();
 }
 
-window.addEventListener('storage', function (e) {
-    if (e.key === TEAM_NAMES_STORAGE_KEY) refreshTeamNamesIfChanged();
-    if (e.key === TEAM_COLORS_STORAGE_KEY) {
-        state.teamColors = loadTeamColors();
-        applyTeamColors();
-        render();
-    }
-});
-
-// ===== MANNSCHAFTSFARBEN (RAL 6038 Leuchtgrün / RAL 3024 Leuchtrot) =====
-// Wie im Modul Tablet: offizielle Eisstock-Stockfarben, es gibt genau 2
-// Farben für 2 Mannschaften - wählt eine Mannschaft eine Farbe, bekommt die
-// andere automatisch die jeweils andere zugewiesen (siehe setTeamColor()).
+// ============================================================
+// MANNSCHAFTSFARBEN (RAL 6038 / RAL 3024)
+// ============================================================
 const TEAM_COLOR_HEX = {
-    green: '#00b51a',   // RAL 6038 Leuchtgrün (Näherungswert, RAL veröffentlicht keine offiziellen Hex-Codes)
-    red:   '#ff2d21'    // RAL 3024 Leuchtrot (Näherungswert)
+    green: '#00b51a',
+    red:   '#ff2d21'
 };
 const TEAM_COLOR_ICON = { green: '🟢', red: '🔴' };
 const TEAM_COLORS_STORAGE_KEY = 'esv_grein_team_farben';
@@ -1451,7 +1408,8 @@ function loadTeamColors() {
     try {
         const data = Store.get(TEAM_COLORS_STORAGE_KEY, null);
         if (data) {
-            const parsed = JSON.parse(data);
+            // Store.get liefert bereits ein Objekt; alte Einträge können noch als JSON-String vorliegen
+            const parsed = typeof data === 'string' ? JSON.parse(data) : data;
             if (parsed && (parsed.w === 'green' || parsed.w === 'red') && (parsed.e === 'green' || parsed.e === 'red') && parsed.w !== parsed.e) {
                 return { w: parsed.w, e: parsed.e };
             }
@@ -1464,11 +1422,8 @@ function saveTeamColors() {
     Store.set(TEAM_COLORS_STORAGE_KEY, state.teamColors);
 }
 
-// Mischt eine Farbe mit dem dunklen Kartenhintergrund - für den "ausgewählt"-
-// Zustand der Mannschaftskarte, damit dieser zur jeweils tatsächlich
-// zugewiesenen Farbe passt (nicht mehr fix grün/rot).
 function mixWithDark(hex, amount) {
-    const base = { r: 15, g: 31, b: 23 }; // #0f1f17
+    const base = { r: 15, g: 31, b: 23 };
     const c = hex.replace('#', '');
     const r = parseInt(c.substring(0, 2), 16);
     const g = parseInt(c.substring(2, 4), 16);
@@ -1508,8 +1463,6 @@ function teamIcon(team) {
     return TEAM_COLOR_ICON[state.teamColors[team]] || (team === 'w' ? '⚪' : '🔴');
 }
 
-// Setzt die Farbe für eine Mannschaft - die andere Mannschaft bekommt
-// automatisch die jeweils übrige Farbe zugewiesen.
 function setTeamColor(team, color) {
     if (color !== 'green' && color !== 'red') return;
     const other = team === 'w' ? 'e' : 'w';
@@ -1521,38 +1474,71 @@ function setTeamColor(team, color) {
     render();
 }
 
-// ===== STATE =====
+// ============================================================
+// BAHN (1–8)
+// ============================================================
+const BAHN_STORAGE_KEY = 'trainingsmodus_pro_bahn';
+const BAHN_MAX = 8;
+
+function loadBahn() {
+    const n = Number(Store.get(BAHN_STORAGE_KEY, 1));
+    return (Number.isInteger(n) && n >= 1 && n <= BAHN_MAX) ? n : 1;
+}
+
+function saveBahn() {
+    Store.set(BAHN_STORAGE_KEY, state.bahn);
+}
+
+function syncBahnSelect() {
+    const sel = document.getElementById('bahnSelect');
+    if (sel) sel.value = String(state.bahn);
+}
+
+// ============================================================
+// STATE
+// ============================================================
 const state = {
     kehren: 6,
-    baseKehren: 6,                  // konfigurierte Kehren-Anzahl (Dropdown) - bei Unentschieden werden
-                                     // automatisch 2er-Blöcke an "kehren" angehängt, "baseKehren" bleibt die
-                                     // Grundeinstellung, auf die nach dem Spiel zurückgesetzt wird.
+    baseKehren: 6,
     winsToChampion: 2,
     playerCount: 4,
-    arena: null,                    // wird gleich nach der Deklaration gesetzt (siehe unten)
-    selectedTeam: null,             // 'w' | 'e' | null
+    arena: null,
+    selectedTeam: null,
     isTrainingEnded: false,
-    targetKehre: null,              // manuell angetippte Kehre (Korrektur), sonst null = automatisch
-    pendingDigit: null,             // { digit, timeoutId } für 2-stellige Eingabe (z.B. "10")
-    deleteSelect: null,             // { digits, candidates } während der Kehre-Löschen-Dialog offen ist
-    pendingConfirm: null,           // { idx } während der Kehre-Bestätigen-Dialog offen ist
-    pendingFinal: false,            // true während die Schluss-Bestätigung (alle Kehren) offen ist
-    finalConfirmed: false,          // true nur während der Wertung nach "Ja" in der Schluss-Bestätigung
+    targetKehre: null,
+    pendingDigit: null,
+    deleteSelect: null,
+    pendingConfirm: null,
+    pendingFinal: false,
     history: loadHistory(),
     teamNames: loadTeamNames(),
-    teamColors: loadTeamColors()    // { w: 'green'|'red', e: 'green'|'red' } - RAL 6038/3024
+    teamColors: loadTeamColors(),
+    bahn: loadBahn(),
+    _tieBreakTimeout: null
 };
-// createArena() liest state.kehren, daher erst NACH der obigen Deklaration aufrufen
-// (sonst "Cannot access 'state' before initialization").
 state.arena = createArena();
 
-// ===== KEYBOARD (optional – z.B. externe Tastatur/Nummernblock am Raspberry) =====
+// ============================================================
+// TASTATUR-HANDLER (global, einmalig registriert)
+// ============================================================
 function setupKeyboard() {
     document.addEventListener('keydown', function(e) {
-        // Solange die Kehre-Bestätigen-Rückfrage offen ist, geht JEDE Tastatureingabe
-        // dorthin: Enter = Ja (weiter), * (Ziffernblock) = Nein (Eingabe verwerfen) - alles andere
-        // wird ignoriert, damit währenddessen nichts am Spielstand verändert wird.
-        // Schluss-Bestätigung (alle Kehren gespielt): Enter = Ja, * = Nein
+
+        // --- Escape: zentrale Modal-Schließung (nur für schließbare Overlays) ---
+        if (e.key === 'Escape') {
+            if (state.pendingFinal) return;      // Schluss-Bestätigung: nur Enter/✱
+            if (state.pendingConfirm) return;    // Kehre-Bestätigung: nur Enter/✱
+            if (state.deleteSelect) { e.preventDefault(); cancelDeleteKehreDialog(); return; }
+            const settings = document.getElementById('settingsOverlay');
+            if (settings && settings.classList.contains('show')) { closeSettings(); return; }
+            const history = document.getElementById('historyOverlay');
+            if (history && history.classList.contains('show')) { closeHistory(); return; }
+            const tie = document.getElementById('tieBreakOverlay');
+            if (tie && tie.classList.contains('show')) { closeTieBreakDialog(); return; }
+            return;
+        }
+
+        // --- Schluss-Bestätigung hat Vorrang ---
         if (state.pendingFinal) {
             e.preventDefault();
             if (e.key === 'Enter' || e.key === 'NumpadEnter') finalConfirmYes();
@@ -1560,13 +1546,12 @@ function setupKeyboard() {
             return;
         }
 
+        // --- Kehre-Bestätigung hat Vorrang ---
         if (state.pendingConfirm) {
             if (e.key === 'Enter' || e.key === 'NumpadEnter') {
                 e.preventDefault();
                 confirmKehreEntry();
             } else if (e.key === '*' || e.code === 'NumpadMultiply' || e.key === 'Multiply') {
-                // NEIN liegt auf der *-Taste des Ziffernblocks (am Spielfeld steht nur
-                // der Nummernblock zur Verfügung).
                 e.preventDefault();
                 rejectKehreEntry();
             } else {
@@ -1575,14 +1560,19 @@ function setupKeyboard() {
             return;
         }
 
-        // Solange der Kehre-Löschen-Dialog offen ist, geht JEDE Tastatureingabe an
-        // dessen eigene Auswahl-Logik (Kehren-Nummer eintippen + Enter) - die normale
-        // Spiel-Eingabe (Mannschaft wählen, Punkte, ...) ist währenddessen pausiert.
+        // --- Lösch-Dialog hat Vorrang ---
         if (state.deleteSelect) {
             handleDeleteSelectKey(e);
             return;
         }
 
+        // --- Modals: Eingaben nur schließen, nicht Spiel steuern ---
+        const settings = document.getElementById('settingsOverlay');
+        if (settings && settings.classList.contains('show')) return;
+        const history = document.getElementById('historyOverlay');
+        if (history && history.classList.contains('show')) return;
+
+        // --- Enter: Spiel werten / Neustart ---
         if (e.key === 'Enter' || e.key === 'NumpadEnter') {
             e.preventDefault();
             if (state.isTrainingEnded) {
@@ -1594,6 +1584,7 @@ function setupKeyboard() {
             return;
         }
 
+        // --- Komma: Pending abbrechen oder Vollbild verlassen ---
         if (e.key === ',') {
             if (state.pendingDigit) {
                 e.preventDefault();
@@ -1608,24 +1599,28 @@ function setupKeyboard() {
 
         if (state.isTrainingEnded) return;
 
+        // --- Slash: Löschen-Dialog ---
         if (e.key === '/' || e.key === 'Divide' || e.code === 'NumpadDivide') {
             e.preventDefault();
             openDeleteKehreDialog();
             return;
         }
 
+        // --- Minus: Mannschaft E ---
         if (e.key === '-' || e.key === 'Minus' || e.key === 'Subtract') {
             e.preventDefault();
             selectTeam('e');
             return;
         }
 
+        // --- Plus: Mannschaft W ---
         if (e.key === '+' || e.key === 'Plus' || e.key === 'Add' || e.key === '=') {
             e.preventDefault();
             selectTeam('w');
             return;
         }
 
+        // --- Ziffern ---
         const numMap = {
             'Numpad0':'0','Numpad1':'1','Numpad2':'2','Numpad3':'3','Numpad4':'4',
             'Numpad5':'5','Numpad6':'6','Numpad7':'7','Numpad8':'8','Numpad9':'9'
@@ -1643,14 +1638,17 @@ function setupKeyboard() {
     });
 }
 
-// ===== TEAM AUSWAHL =====
+// ============================================================
+// TEAM AUSWAHL
+// ============================================================
 function selectTeam(team) {
     if (state.isTrainingEnded) {
         toast('Training ist beendet! [Enter] für Neustart');
         return;
     }
+    // NEU: eine laufende 2-stellige Eingabe verwerfen, wenn Mannschaft gewechselt wird
+    cancelPendingDigit();
     state.selectedTeam = (state.selectedTeam === team) ? null : team;
-    updateKeyboardStatus();
     render();
     if (state.selectedTeam) {
         flashTeam(state.selectedTeam);
@@ -1662,14 +1660,15 @@ function flashTeam(team) {
         const el = document.getElementById('teamBlock-' + team);
         if (!el) return;
         el.classList.remove('flash');
-        // reflow um die Animation erneut zu starten
         void el.offsetWidth;
         el.classList.add('flash');
         setTimeout(() => el.classList.remove('flash'), 650);
     });
 }
 
-// ===== ZIFFERNEINGABE (Kehren-Ergebnis: 1- oder 2-stellig) =====
+// ============================================================
+// ZIFFERNEINGABE (1- oder 2-stellig)
+// ============================================================
 function handleDigit(d) {
     if (state.isTrainingEnded) {
         toast('Training ist beendet! [Enter] für Neustart');
@@ -1703,7 +1702,6 @@ function handleDigit(d) {
         return;
     }
 
-    // Möglicher Start einer 2-stelligen Eingabe (aktuell nur relevant für "10")
     if (d === '1' && maxPoints >= 10) {
         state.pendingDigit = {
             digit: d,
@@ -1728,8 +1726,7 @@ function cancelPendingDigit() {
     if (state.pendingDigit) {
         clearTimeout(state.pendingDigit.timeoutId);
         state.pendingDigit = null;
-        render();
-        toast('Eingabe abgebrochen');
+        updateKeyboardStatus();
     }
 }
 
@@ -1754,16 +1751,13 @@ function commitValue(v) {
 
     state.selectedTeam = null;
     state.targetKehre = null;
-    updateKeyboardStatus();
     render();
-
-    // Rückfrage statt direkt weiterzuspielen (Rückmeldung mehrerer Vereine nach den
-    // ersten Testspielen): Fehleingaben sollen sich sofort korrigieren lassen, bevor
-    // sich die nächste Kehre / Wertung darauf aufbaut.
     openKehreConfirmDialog(idx);
 }
 
-// ===== KEHRE BESTÄTIGEN (Rückfrage nach jeder Eingabe: JA = weiter, NEIN = neu eingeben) =====
+// ============================================================
+// KEHRE BESTÄTIGEN
+// ============================================================
 function openKehreConfirmDialog(idx) {
     const arena = state.arena;
     state.pendingConfirm = { idx };
@@ -1787,7 +1781,6 @@ function confirmKehreEntry() {
     toast(`✅ Kehre ${idx + 1} bestätigt: W ${arena.pointsA[idx]} | E ${arena.pointsB[idx]}`);
 
     if (checkAllKehrenFull(arena)) {
-        // Alle Kehren gespielt -> Schluss-Bestätigung mit komplettem Kehrverlauf
         setTimeout(() => openFinalConfirmDialog(), 300);
     }
 }
@@ -1803,12 +1796,13 @@ function rejectKehreEntry() {
     document.getElementById('kehreConfirmOverlay').classList.remove('show');
 
     state.targetKehre = idx;
-    updateKeyboardStatus();
     render();
     toast(`↩️ Kehre ${idx + 1} verworfen – bitte neu eingeben`);
 }
 
-// ===== SCHLUSS-BESTÄTIGUNG (alle Kehren gespielt) =====
+// ============================================================
+// SCHLUSS-BESTÄTIGUNG
+// ============================================================
 function openFinalConfirmDialog() {
     if (state.isTrainingEnded || state.pendingFinal) return;
     if (!checkAllKehrenFull(state.arena)) return;
@@ -1816,8 +1810,9 @@ function openFinalConfirmDialog() {
     state.selectedTeam = null;
     state.pendingFinal = true;
     const arena = state.arena;
+    // NEU: defensive Kopie – Live-Arrays werden nicht mehr referenziert
     document.getElementById('finalConfirmTable').innerHTML = renderHistoryKehren(
-        { kehren: { w: arena.pointsA, e: arena.pointsB }, baseKehren: state.baseKehren },
+        { kehren: { w: arena.pointsA.slice(), e: arena.pointsB.slice() }, baseKehren: state.baseKehren },
         state.teamNames
     );
     document.getElementById('finalConfirmOverlay').classList.add('show');
@@ -1833,8 +1828,8 @@ function finalConfirmYes() {
     if (!state.pendingFinal) return;
     closeFinalConfirmDialog();
     toast('📊 Kehren bestätigt – Wertung läuft...');
-    state.finalConfirmed = true;
-    try { evaluateGame(); } finally { state.finalConfirmed = false; }
+    // NEU: sauberer Parameter statt finalConfirmed-Flag auf state
+    evaluateGame(true);
 }
 
 function finalConfirmNo() {
@@ -1843,9 +1838,6 @@ function finalConfirmNo() {
     openCorrectKehreDialog();
 }
 
-// Nach "Nein": nachfragen, WELCHE Kehre angepasst werden soll (Nummer über den
-// Ziffernblock + Enter oder Kachel antippen). Die gewählte Kehre wird geleert und
-// neu eingegeben; danach erscheint die Schluss-Bestätigung erneut.
 function openCorrectKehreDialog() {
     const candidates = [];
     for (let i = 0; i < state.kehren; i++) candidates.push(i);
@@ -1859,21 +1851,21 @@ function openCorrectKehreDialog() {
 function cancelDeleteKehreDialog() {
     const wasCorrect = state.deleteSelect && state.deleteSelect.mode === 'correct';
     closeDeleteKehreDialog();
-    // Aus der Korrektur-Auswahl zurück zur Schluss-Bestätigung
     if (wasCorrect) openFinalConfirmDialog();
 }
 
-// ===== KEHRE ANTIPPEN (Korrektur-Ziel wählen) =====
+// ============================================================
+// KEHRE ANTIPPEN
+// ============================================================
 function toggleKehreTarget(idx) {
     if (state.isTrainingEnded) return;
     state.targetKehre = (state.targetKehre === idx) ? null : idx;
     render();
 }
 
-// Rückfrage, WELCHE Kehre gelöscht werden soll: zeigt alle Kehren mit einem
-// Ergebnis als antippbare Buttons an, UND lässt die Nummer wahlweise direkt über
-// den Ziffernblock eintippen (siehe handleDeleteSelectKey) - statt automatisch
-// die letzte Kehre zu löschen.
+// ============================================================
+// LÖSCH-DIALOG
+// ============================================================
 function openDeleteKehreDialog() {
     if (state.isTrainingEnded) {
         toast('Training ist beendet! [Enter] für Neustart');
@@ -1888,7 +1880,7 @@ function openDeleteKehreDialog() {
         toast('Keine Kehre zum Löschen vorhanden');
         return;
     }
-    state.deleteSelect = { digits: '', candidates };
+    state.deleteSelect = { digits: '', candidates, mode: 'delete' };
     renderDeleteKehreDialog();
     document.getElementById('kehreDeleteOverlay').classList.add('show');
 }
@@ -1931,16 +1923,14 @@ function confirmDeleteKehre(idx) {
     render();
 }
 
-// Tastatureingabe INNERHALB des Lösch-Dialogs: Kehren-Nummer über den Ziffernblock
-// eintippen (0-9 bzw. Numpad0-9), mit Enter bestätigen. Rücktaste korrigiert die
-// letzte Ziffer, Escape bricht komplett ab.
+// NEU: Komma ',' als Abbruch entfernt (nicht am Numpad verfügbar) – Escape reicht.
 function handleDeleteSelectKey(e) {
     const numMap = {
         'Numpad0':'0','Numpad1':'1','Numpad2':'2','Numpad3':'3','Numpad4':'4',
         'Numpad5':'5','Numpad6':'6','Numpad7':'7','Numpad8':'8','Numpad9':'9'
     };
 
-    if (e.key === ',' || e.key === 'Escape' || e.key === '*' || e.code === 'NumpadMultiply' || e.key === 'Multiply') {
+    if (e.key === 'Escape' || e.key === '*' || e.code === 'NumpadMultiply' || e.key === 'Multiply') {
         e.preventDefault();
         cancelDeleteKehreDialog();
         return;
@@ -1975,14 +1965,17 @@ function handleDeleteSelectKey(e) {
 
     if (digit !== null) {
         e.preventDefault();
-        if (state.deleteSelect.digits.length >= 2) return; // Kehren-Nummern sind maximal 2-stellig
+        if (state.deleteSelect.digits.length >= 2) return;
         state.deleteSelect.digits += digit;
         renderDeleteKehreDialog();
     }
 }
 
-// ===== SPIEL WERTEN =====
-function evaluateGame() {
+// ============================================================
+// SPIEL WERTEN
+// ============================================================
+// NEU: skipFinalConfirm als Parameter statt state.finalConfirmed-Flag
+function evaluateGame(skipFinalConfirm = false) {
     const arena = state.arena;
 
     if (state.isTrainingEnded) {
@@ -2002,8 +1995,7 @@ function evaluateGame() {
         }
     }
 
-    // Gewertet wird erst, nachdem die Schluss-Bestätigung mit "Ja" beantwortet wurde
-    if (!state.finalConfirmed) {
+    if (!skipFinalConfirm) {
         openFinalConfirmDialog();
         return;
     }
@@ -2012,9 +2004,6 @@ function evaluateGame() {
     const b = sum(arena.pointsB);
 
     if (state.kehren === state.baseKehren) {
-        // Reguläres Spielende nach den eingestellten Kehren: Gesamtsumme entscheidet.
-        // Bei Gleichstand werden automatisch 2 weitere Kehren gespielt (siehe unten) -
-        // kein Unentschieden wird final gewertet.
         if (a === b) {
             extendKehren(a, b);
             return;
@@ -2026,10 +2015,6 @@ function evaluateGame() {
         return;
     }
 
-    // Verlängerung aktiv: der zuletzt gespielte 2er-Block aus zusätzlichen Kehren
-    // entscheidet per Punktesumme - genau wie beim Grundspiel, nur eben für je
-    // 2 zusätzliche Kehren. Steht auch dieser Block unentschieden, werden automatisch
-    // wieder 2 weitere Kehren gespielt, bis eine Mannschaft einen Block gewinnt.
     const blockA = (arena.pointsA[state.kehren - 2] || 0) + (arena.pointsA[state.kehren - 1] || 0);
     const blockB = (arena.pointsB[state.kehren - 2] || 0) + (arena.pointsB[state.kehren - 1] || 0);
 
@@ -2046,9 +2031,6 @@ function evaluateGame() {
     finalizeGame(a, b, winnerCode);
 }
 
-// Abschluss eines entschiedenen Spiels - trägt in die Historie ein und bereitet
-// das nächste Spiel vor. Wird nur mit winnerCode 'W' oder 'E' aufgerufen, da ein
-// Unentschieden dank Kehren-Verlängerung nie final gewertet wird.
 function finalizeGame(a, b, winnerCode) {
     const arena = state.arena;
 
@@ -2056,12 +2038,12 @@ function finalizeGame(a, b, winnerCode) {
         w: a, e: b, ts: Date.now(),
         date: new Date().toLocaleString('de-AT'),
         winner: winnerCode,
-        // Kompletter Kehrverlauf wird mitgespeichert (Nachvollziehbarkeit bei Unstimmigkeiten)
         kehren: { w: arena.pointsA.slice(), e: arena.pointsB.slice() },
         baseKehren: state.baseKehren,
+        bahn: state.bahn,
         teamNames: { w: state.teamNames.w, e: state.teamNames.e }
     });
-    saveHistory();
+    saveHistory();   // Limit wird in saveHistory() angewendet
 
     state.kehren = state.baseKehren;
     arena.pointsA = Array(state.kehren).fill(null);
@@ -2080,15 +2062,14 @@ function finalizeGame(a, b, winnerCode) {
     }
 }
 
-// ===== UNENTSCHIEDEN: AUTOMATISCHE VERLÄNGERUNG UM JE 2 KEHREN (NEU) =====
-// Fügt automatisch 2 weitere Kehren hinzu (kein Klick nötig) und zeigt kurz eine
-// Info-Meldung, die sich von selbst schließt.
+// ============================================================
+// VERLÄNGERUNG BEI UNENTSCHIEDEN
+// ============================================================
 function extendKehren(a, b) {
     const arena = state.arena;
     arena.pointsA.push(null, null);
     arena.pointsB.push(null, null);
     state.kehren += 2;
-    updateKeyboardStatus();
     showTieBreakDialog(a, b);
     render();
 }
@@ -2109,10 +2090,11 @@ function closeTieBreakDialog() {
     clearTimeout(state._tieBreakTimeout);
 }
 
-// ===== TRAINING BEENDEN =====
+// ============================================================
+// TRAINING BEENDEN
+// ============================================================
 function endTraining(arena) {
     state.isTrainingEnded = true;
-    updateKeyboardStatus();
 
     const winnerKey = winnerTeamKey(arena);
     const winner = winnerKey ? state.teamNames[winnerKey] : '';
@@ -2121,10 +2103,11 @@ function endTraining(arena) {
     const summaryEl = document.getElementById('scoreSummary');
 
     winnerEl.textContent = winner;
-    winnerEl.style.color = winnerKey === 'w' ? '#4caf50' : '#ff6b6b';
+    winnerEl.style.color = winnerKey === 'w' ? TEAM_COLOR_HEX[state.teamColors.w] : TEAM_COLOR_HEX[state.teamColors.e];
     summaryEl.textContent = `Siege: ${arena.winsA} : ${arena.winsB}`;
 
     overlay.classList.add('show');
+    updateKeyboardStatus();
 
     const toastEl = document.getElementById('toast');
     toastEl.textContent = `🏆 ${winner} gewinnt das Training! [Enter] für Neustart`;
@@ -2137,8 +2120,7 @@ function endTraining(arena) {
 }
 
 function startNewTraining() {
-    const overlay = document.getElementById('trainingEndedOverlay');
-    overlay.classList.remove('show');
+    document.getElementById('trainingEndedOverlay').classList.remove('show');
 
     state.isTrainingEnded = false;
     state.kehren = state.baseKehren;
@@ -2146,13 +2128,13 @@ function startNewTraining() {
     state.selectedTeam = null;
     state.targetKehre = null;
     cancelPendingDigit();
-    // Historie bleibt bewusst erhalten (siehe "Historie leeren"-Button)
-    updateKeyboardStatus();
     render();
     toast('🔄 Neues Training gestartet! - Historie bleibt erhalten');
 }
 
-// ===== STATUS UPDATE =====
+// ============================================================
+// STATUS UPDATE
+// ============================================================
 function updateKeyboardStatus() {
     const statusEl = document.getElementById('keyboardStatus');
 
@@ -2180,12 +2162,12 @@ function updateKeyboardStatus() {
     }
 }
 
-// ===== RENDER =====
+// ============================================================
+// RENDER
+// ============================================================
 function render() {
     document.getElementById('layout').innerHTML = renderArena(state.arena);
-    if (!state.isTrainingEnded) {
-        updateKeyboardStatus();
-    }
+    updateKeyboardStatus();
     scrollToActiveVerlauf();
     refreshHistoryModalIfOpen();
     syncTeamNameInputs();
@@ -2203,7 +2185,8 @@ function renderArena(arena) {
     return `
     <div class="arena ${state.kehren > state.baseKehren ? 'has-ext' : ''}">
         <div class="arena-top">
-            <div class="arena-title">Trainingsmodus PRO</div>
+            <div class="arena-title">🥌 Trainingsmodus PRO</div>
+            <div class="bahn-badge" onclick="openSettings()" title="Bahn ändern (Einstellungen)">Bahn ${state.bahn}</div>
             <div class="arena-hint">＋ ${teamIcon('w')} W &nbsp;|&nbsp; − ${teamIcon('e')} E &nbsp;|&nbsp; 0-9 Punkte &nbsp;|&nbsp; ／ Löschen/Bearbeiten &nbsp;|&nbsp; Enter ⏎ Wertung</div>
             <div class="pending-preview ${state.pendingDigit ? 'show' : ''}">Eingabe: ${state.pendingDigit ? state.pendingDigit.digit + '…' : ''}</div>
         </div>
@@ -2225,7 +2208,7 @@ function renderArena(arena) {
         <div class="arena-footer">
             <button class="gold" onclick="evaluateGame()">▶ Werten</button>
             <button onclick="resetGame()">🔁 Neues Spiel</button>
-            <div class="footer-right">@Roland Koll Version 2.0
+            <div class="footer-right">@Roland Koll Version 4.0 · Zuschauermonitor-Hauptlayout · eigenständig</div>
         </div>
     </div>
     `;
@@ -2241,8 +2224,6 @@ function renderTeamBlock(team, label, icon, score, selectedClass) {
     </div>`;
 }
 
-// Gewonnene Spiele – groß und gut lesbar, zwischen den Mannschaftskacheln und der
-// Kehren-Eingabe platziert (statt als kleines Badge im Mannschaftskopf).
 function renderWinsPanel(arena) {
     return `
     <div class="wins-panel">
@@ -2260,8 +2241,6 @@ function renderWinsPanel(arena) {
     </div>`;
 }
 
-// Bis 8 Kehren in einer Reihe über die ganze Breite, darüber (Verlängerung)
-// gleichmäßig auf mehrere Reihen verteilt.
 function verlaufColumns(n) {
     if (n <= 8) return n;
     return Math.ceil(n / Math.ceil(n / 8));
@@ -2273,8 +2252,6 @@ function verlaufHeaderInfo(activeIndex) {
     return `Verlängerung ${block} · Kehre ${activeIndex + 1} / ${state.kehren}`;
 }
 
-// Verlängerung: Grundspiel oben (kompakt, mit Summe), darunter die Verlängerungen
-// als eigene 2er-Blöcke - jeder Block mit Überschrift, Kehren-Nummern und Ergebnis.
 function renderVerlaufSplit(arena, activeIndex, entryIndex) {
     const base = state.baseKehren;
     const sA = arena.pointsA.slice(0, base).reduce((x, y) => x + (y || 0), 0);
@@ -2318,7 +2295,6 @@ function renderVerlaufGrid(arena, activeIndex, entryIndex, from = 0, to = state.
         const aVal = arena.pointsA[i] !== null ? arena.pointsA[i] : '-';
         const bVal = arena.pointsB[i] !== null ? arena.pointsB[i] : '-';
         const isTarget = i === entryIndex && state.targetKehre !== null;
-        // Aktuelle Kehre = die als nächstes einzugebende (bzw. zur Korrektur gewählte)
         const isActive = state.targetKehre !== null ? isTarget : (i === activeIndex);
         const isCompleted = arena.pointsA[i] !== null && arena.pointsB[i] !== null && !isActive;
 
@@ -2332,7 +2308,9 @@ function renderVerlaufGrid(arena, activeIndex, entryIndex, from = 0, to = state.
     return html;
 }
 
-// ===== SPIEL-HISTORIE (eigenes Fenster) =====
+// ============================================================
+// SPIEL-HISTORIE
+// ============================================================
 function openHistory() {
     document.getElementById('historyOverlay').classList.add('show');
     renderHistoryModal();
@@ -2350,7 +2328,6 @@ function refreshHistoryModalIfOpen() {
 function renderHistoryModal() {
     document.getElementById('historyCount').textContent = state.history.length;
     const list = document.getElementById('historyList');
-    // aufgeklappte Einträge beim Neuzeichnen offen lassen
     const open = new Set([...list.querySelectorAll('details[open]')].map(d => d.dataset.num));
     list.innerHTML = renderHistoryList();
     open.forEach(n => { const d = list.querySelector(`details[data-num="${n}"]`); if (d) d.open = true; });
@@ -2360,9 +2337,6 @@ function renderHistoryList() {
     if (!state.history.length) {
         return `<div class="history-empty">Noch keine gewerteten Spiele – die Historie bleibt auch über „Neues Training“ hinweg erhalten.</div>`;
     }
-    // Absteigend anzeigen (neuestes Spiel oben), die Spiel-Nummer bleibt aber die
-    // ursprüngliche chronologische Nummer (Spiel 1 = allererstes gewertetes Spiel).
-    // Jeder Eintrag lässt sich aufklappen und zeigt den kompletten Kehrverlauf.
     return state.history.map((g, i) => ({ g, num: i + 1 })).reverse().map(({ g, num }) => {
         const names = g.teamNames || state.teamNames;
         let cls = '', text;
@@ -2377,7 +2351,7 @@ function renderHistoryList() {
         }
         const date = g.date ? `<span class="g-date">${escapeHtml(g.date)}</span>` : '';
         return `<details class="history-chip ${cls}" data-num="${num}">
-            <summary><span class="g-caret">▶</span><span class="g-num">Spiel ${num}</span>${text}${date}</summary>
+            <summary><span class="g-caret">▶</span><span class="g-num">Spiel ${num}${g.bahn ? ` · Bahn ${g.bahn}` : ''}</span>${text}${date}</summary>
             ${renderHistoryKehren(g, names)}
         </details>`;
     }).join('');
@@ -2407,21 +2381,23 @@ function renderHistoryKehren(g, names) {
     return `<div class="history-kehren"><table><thead><tr>${head}</tr></thead><tbody><tr>${rowW}</tr><tr>${rowE}</tr></tbody></table>${note}</div>`;
 }
 
-// ===== HISTORIE EXPORTIEREN (Excel, lokal am Raspberry gespeichert) =====
+// ============================================================
+// EXPORT
+// ============================================================
 function exportHistory() {
     if (!state.history.length) {
         toast('Keine Historie zum Exportieren vorhanden');
         return;
     }
 
-    const rows = [['Spiel', state.teamNames.w, state.teamNames.e, 'Sieger', 'Datum/Zeit', 'Kehrverlauf (W:E je Kehre)']];
+    const rows = [['Spiel', 'Bahn', state.teamNames.w, state.teamNames.e, 'Sieger', 'Datum/Zeit', 'Kehrverlauf (W:E je Kehre)']];
     state.history.forEach((g, i) => {
         const sieger = g.winner === 'W' ? state.teamNames.w : g.winner === 'E' ? state.teamNames.e : (g.w === g.e ? 'Unentschieden' : (g.w > g.e ? state.teamNames.w : state.teamNames.e));
         const zeit = g.date || (g.ts ? new Date(g.ts).toLocaleString('de-AT') : '');
         const verlauf = (g.kehren && Array.isArray(g.kehren.w))
             ? g.kehren.w.map((a, k) => `${k + 1}) ${a ?? '-'}:${g.kehren.e[k] ?? '-'}`).join('  |  ')
             : '';
-        rows.push([i + 1, g.w, g.e, sieger, zeit, verlauf]);
+        rows.push([i + 1, g.bahn ?? '', g.w, g.e, sieger, zeit, verlauf]);
     });
 
     const now = new Date();
@@ -2429,29 +2405,25 @@ function exportHistory() {
     const stamp = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}`;
     const filenameBase = `Trainingsmodus_Historie_${stamp}`;
 
-    // Bevorzugt: echte .xlsx-Datei (Bibliothek wird beim Laden der Seite im Hintergrund geladen)
     if (typeof XLSX !== 'undefined') {
         try {
             const ws = XLSX.utils.aoa_to_sheet(rows);
-            ws['!cols'] = [{ wch: 8 }, { wch: 15 }, { wch: 15 }, { wch: 16 }, { wch: 20 }, { wch: 70 }];
+            ws['!cols'] = [{ wch: 8 }, { wch: 6 }, { wch: 15 }, { wch: 15 }, { wch: 16 }, { wch: 20 }, { wch: 70 }];
             const wb = XLSX.utils.book_new();
             XLSX.utils.book_append_sheet(wb, ws, 'Spiel-Historie');
             XLSX.writeFile(wb, filenameBase + '.xlsx');
             logExport('Trainingsmodus Pro', filenameBase + '.xlsx', 'Excel');
             toast(`📊 Historie als Excel-Datei exportiert (${state.history.length} Spiele)`);
             return;
-        } catch (e) {
-            // fällt unten auf den CSV-Export zurück
-        }
+        } catch (e) {}
     }
 
-    // Fallback ohne Internet am Raspberry: CSV-Datei, öffnet ebenfalls direkt in Excel
     exportHistoryAsCsv(rows, filenameBase);
 }
 
 function exportHistoryAsCsv(rows, filenameBase) {
     const csvContent = rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(';')).join('\r\n');
-    const blob = new Blob(['﻿' + csvContent], { type: 'text/csv;charset=utf-8;' });
+    const blob = new Blob(['\ufeff' + csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
@@ -2461,6 +2433,7 @@ function exportHistoryAsCsv(rows, filenameBase) {
     document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 1000);
     logExport('Trainingsmodus Pro', filenameBase + '.csv', 'CSV');
+    // NEU: präzisierter Toast
     toast(`📊 Historie als CSV exportiert (${state.history.length} Spiele) – öffnet direkt in Excel`);
 }
 
@@ -2473,7 +2446,9 @@ function clearHistory() {
     toast('🗑️ Historie gelöscht');
 }
 
-// ===== HELFER =====
+// ============================================================
+// HELFER
+// ============================================================
 function createArena() {
     return {
         pointsA: Array(state.kehren).fill(null),
@@ -2496,8 +2471,6 @@ function hasWinner(arena) {
     return arena.winsA >= state.winsToChampion || arena.winsB >= state.winsToChampion;
 }
 
-// Liefert den Team-Schlüssel ('w'/'e') des Siegers, NICHT den (frei editierbaren)
-// Anzeigenamen - so bleibt die Sieger-Erkennung stabil, egal wie die Mannschaft heißt.
 function winnerTeamKey(arena) {
     if (arena.winsA >= state.winsToChampion) return 'w';
     if (arena.winsB >= state.winsToChampion) return 'e';
@@ -2545,7 +2518,6 @@ function resetGame() {
     state.selectedTeam = null;
     state.targetKehre = null;
     cancelPendingDigit();
-    updateKeyboardStatus();
     render();
     toast('Spiel neu gestartet');
 }
@@ -2557,7 +2529,6 @@ function fullReset() {
     state.targetKehre = null;
     state.isTrainingEnded = false;
     cancelPendingDigit();
-    updateKeyboardStatus();
     document.getElementById('trainingEndedOverlay').classList.remove('show');
     render();
     toast('Kompletter Reset (Historie bleibt erhalten)');
@@ -2571,9 +2542,12 @@ function toggleFullscreen() {
     }
 }
 
-// ===== EINSTELLUNGEN (Zahnrad) – genauso wie im Modul Tablet =====
+// ============================================================
+// EINSTELLUNGEN
+// ============================================================
 function openSettings() {
     syncTeamNameInputs();
+    syncBahnSelect();
     updateColorToggleUI();
     document.getElementById('settingsOverlay').classList.add('show');
 }
@@ -2594,7 +2568,9 @@ function toast(msg, type) {
     }, 3000);
 }
 
-// ===== EVENT-LISTENER (Header-Auswahl) =====
+// ============================================================
+// EVENT-LISTENER (Header-Auswahl)
+// ============================================================
 document.getElementById('playerCount').addEventListener('change', function(e) {
     if (state.isTrainingEnded) {
         toast('Training ist beendet! [Enter] für Neustart');
@@ -2604,7 +2580,6 @@ document.getElementById('playerCount').addEventListener('change', function(e) {
     state.playerCount = Number(e.target.value);
     state.selectedTeam = null;
     cancelPendingDigit();
-    updateKeyboardStatus();
     render();
     toast(`👥 ${state.playerCount} Spieler/Kehre`);
 });
@@ -2622,8 +2597,14 @@ document.getElementById('kehrenSelect').addEventListener('change', function(e) {
     state.selectedTeam = null;
     state.targetKehre = null;
     cancelPendingDigit();
-    updateKeyboardStatus();
     render();
+});
+
+document.getElementById('bahnSelect').addEventListener('change', function(e) {
+    state.bahn = Number(e.target.value);
+    saveBahn();
+    render();
+    toast(`🛤️ Bahn ${state.bahn} ausgewählt`);
 });
 
 document.getElementById('gamesSelect').addEventListener('change', function(e) {
@@ -2636,7 +2617,19 @@ document.getElementById('gamesSelect').addEventListener('change', function(e) {
     render();
 });
 
-// ===== HÖHENKORREKTUR =====
+// Cross-Tab-Sync (falls die Datei in mehreren Tabs offen ist)
+window.addEventListener('storage', function (e) {
+    if (e.key === TEAM_NAMES_STORAGE_KEY) refreshTeamNamesIfChanged();
+    if (e.key === TEAM_COLORS_STORAGE_KEY) {
+        state.teamColors = loadTeamColors();
+        applyTeamColors();
+        render();
+    }
+});
+
+// ============================================================
+// HÖHENKORREKTUR
+// ============================================================
 function setCorrectHeight() {
     const vh = window.innerHeight;
     document.documentElement.style.setProperty('height', vh + 'px');
@@ -2649,10 +2642,15 @@ window.addEventListener('orientationchange', function() {
 });
 setCorrectHeight();
 
-// ===== INIT =====
+// ============================================================
+// INIT
+// ============================================================
 applyTeamColors();
+syncBahnSelect();
 setupKeyboard();
 render();
+
+console.log('Trainingsmodus PRO V04 gestartet – mit Optimierungen');
 </script>
 
 </body>
